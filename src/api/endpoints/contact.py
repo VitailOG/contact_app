@@ -1,6 +1,6 @@
 from typing import Annotated
 
-from fastapi import APIRouter, Body
+from fastapi import APIRouter
 
 from src.api.dependencies.repositories import ContactDependency
 from src.api.schemas.contact import ContactListSchema
@@ -13,4 +13,3 @@ async def read(
     repo: ContactDependency, contact: Annotated[str, ...]
 ) -> list[ContactListSchema]:
     return await repo.filter(contact)
-    # return {}
