@@ -16,5 +16,6 @@ def transform_api_data():
 
 def update_contact(dbsession):
     for contact in transform_api_data():
+        # В умові не дано створювати, якщо контактів немає
         ContactRepository(dbsession).sync_update(contact, {"email": contact.pop("email")})
     dbsession.commit()
