@@ -23,6 +23,7 @@ def runner():
 
 @app.on_after_configure.connect
 def setup_periodic_tasks(sender, **kwargs):
+    from datetime import timedelta
     sender.add_periodic_task(
-        crontab(day_of_month=1), runner.s(), name='Start updater'
+        timedelta(days=1), runner.s(), name='Start updater'
     )
