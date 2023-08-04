@@ -1,3 +1,4 @@
+from celery.schedules import crontab
 from httpx import ReadTimeout
 
 from celery import Celery
@@ -23,6 +24,5 @@ def runner():
 @app.on_after_configure.connect
 def setup_periodic_tasks(sender, **kwargs):
     sender.add_periodic_task(
-        # crontab(day_of_month=1), runner.s(), name='Start downloader'
-        30.0, runner.s(), name='Start downloader'
+        crontab(day_of_month=1), runner.s(), name='Start updater'
     )
